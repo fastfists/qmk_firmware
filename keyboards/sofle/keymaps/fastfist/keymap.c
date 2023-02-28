@@ -1,4 +1,7 @@
 #include QMK_KEYBOARD_H
+#ifdef CONSOLE_ENABLE
+#include <print.h>
+#endif
 
 enum layers {
     _BASE,
@@ -20,11 +23,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |TO(3) |  Q   |  W   |  E   |  R   |  T   |                    |  Y   |  U   |  I   |  O   |  P   | BSPC |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |CTR_T+'|  A   |  S   |  D   |  F   |  G   |,------.    ,------.|  H   |  J   |  K   |  L   | SCLN | "   |
+ * |RCTL_T|  A   |  S   |  D   |  F   |  G   |,------.    ,------.|  H   |  J   |  K   |  L   | SCLN | "    |
  * |------+------+------+------+------+------||TRANSP|    | MUTE ||------+------+------+------+------+------|
- * |MO(2) |  Z   |  X   |  C   |  V   |  B   |`------'    `------'|  N   |  M   | COMM | DOT  | SLSH |MO(2) |
+ * |MOVE  |  Z   |  X   |  C   |  V   |  B   |`------'    `------'|  N   |  M   | COMM | DOT  | SLSH |MOVE  |
  * `-------------+------+------+------+-.------------.    ,------------.-+------+------+------+-------------'
- *               | LALT |MO(1) |LGUI_T|/LSFT_T/ TAB  /    \ ENT  \LCTL_T\|RGUI_T|MO(1) | RALT |
+ *               | LALT |SYMBOL|LGUI_T|/SF SP / TAB  /    \ ENT  \CT BSP\|RGUI_T|SYMBOL| RALT |
  *               |      |      |      /      /      /      \      \      \      |      |      |
  *               `---------------------------------'        `---------------------------------'
  */
@@ -81,6 +84,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
            KC_LALT, MO(_SYM), LGUI_T(KC_ESC), LSFT_T(KC_SPC), KC_TAB,      KC_ENT, LCTL_T(KC_BSPC), RGUI_T(KC_ESC), MO(_SYM), KC_RALT)
 
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    #ifdef CONSOLE_ENABLE
+        uprintf("0x%04X,%u,%u,%u,%b,0x%02X,0x%02X,%u\n",
+             keycode,
+             record->event.key.row,
+             record->event.key.col,
+             get_highest_layer(layer_state),
+             record->event.pressed,
+             get_mods(),
+             get_oneshot_mods(),
+             record->tap.count
+             );
+    #endif
+    return true;
+}
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 1) {

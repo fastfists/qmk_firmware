@@ -41,11 +41,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* ,-----------------------------------------.                    ,-----------------------------------------.
  * |TRANSP|  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | MPLY | EXLM |  AT  | HASH | DLR  | PERC |                    | CIRC | AMPR | ASTR | PLUS | PIPE | F12  |
+ * |   !  |  @   |   #  |  #   |   $  |   %  |                    |  ^   |  &   |  *   |  +   |  |   | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | TILD | UNDS |TRANSP| LPRN | RPRN | LCBR |,------.    ,------.| COLN | EQL  | DOT  | MINS |TRANSP| GRV  |
+ * |  ~   |  _   |TRANSP|  (   |  )   |   {  |,------.    ,------.|  :   |  =   |  .   |  -   |TRANSP|  `   |
  * |------+------+------+------+------+------||TRANSP|    |TRANSP||------+------+------+------+------+------|
- * |TRANSP|TRANSP|TRANSP| LBRC | RBRC | RCBR |`------'    `------'|TRANSP|TRANSP|  LT  |  GT  | BSLS |TRANSP|
+ * |TRANSP|TRANSP|TRANSP|  [   |  ]   |   }  |`------'    `------'|TRANSP|TRANSP|  <   |  >   |  \   |TRANSP|
  * `-------------+------+------+------+-.------------.    ,------------.-+------+------+------+-------------'
  *               |TRANSP|TRANSP|TRANSP|/ TAB  /TRANSP/    \TRANSP\ ENT  \|TRANSP|TRANSP|TRANSP|
  *               |      |      |      /      /      /      \      \      \      |      |      |
